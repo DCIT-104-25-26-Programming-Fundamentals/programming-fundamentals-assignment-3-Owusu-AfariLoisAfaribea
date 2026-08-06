@@ -60,3 +60,33 @@
 // =============================================================================
 
 
+const readlinesync = require("readline-sync");
+function multiplicationTable(number) {
+    console.log("Multiplication Table for " + number + ":");
+    for (let i = 1; i <= 12; i++) {
+        console.log(number + " x " + i + " = " + (number * i));
+    }
+}
+function tablesFrom1ToN(n) {
+    for (let i = 1; i <= n; i++) {
+        multiplicationTable(i);
+        if (i < n) {
+            console.log("---------------------------");
+        }
+    }
+}
+    function main() {
+        const number = parseInt(readlinesync.question("Enter a number for the multiplication table: "));   
+        if (number <= 0 || isNaN(number)) {
+            console.log("Error: Please enter a positive integer.");
+            return;
+        }
+        multiplicationTable(number);
+        const n = parseInt(readlinesync.question("Enter a number N to print tables from 1 to N: "));
+        if (n <= 0 || isNaN(n)) {
+            console.log("Error: Please enter a positive integer.");
+            return;
+        }
+        tablesFrom1ToN(n);
+    }
+    main();
