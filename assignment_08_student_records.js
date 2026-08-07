@@ -84,4 +84,51 @@
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
 
+const r = require("readline-sync");
+function avg(a) {
+    let sum = 0;
+    for (let i = 0; i < a.length; i++)
+        sum += a[i];
+return sum / a.length;
+}
 
+function addStudent(students) {
+    let name = r.question("Student name: ");
+    let id = parseInt(r.question("Student ID: "));
+    let numScores = parseInt(r.question("How many scores? "));
+    let scores = [];
+
+    for (let i = 0; i < numScores; i++) {
+        scores.push(parseFloat(r.question(`Enter score ${i +1}: `)));
+    }
+    students.push({name, id, scores });
+    console.log(`Student "${name}" added successfully.`);
+}
+    function showStudent(s){
+        console.log(`Name: ${s.name}, ID: ${s.id}, Scores: ${s.scores.join(", ")}, Average: ${avg(s.scores).toFixed(2)}`);
+    }
+    function showAllStudents(students) {
+        for (let s of students) showStudent(s);
+    }
+function findStudentById(students) {
+    let id = parseInt(r.question("Enter student ID: "));
+    for (let x of students) 
+        if (x.id === id)
+             return console.log(`${x.name}'s average score: ${avg(x.scores).toFixed(2)}`);
+    console.log("Student ID not found.");
+}
+function main(){
+    let students = [], c;
+
+    do {
+        console.log('\n1.Add student\n2.Display all students\n3.Calculate average score\n4.Quit');
+        c = r.questionInt('Choice: ');
+        if (c === 1) addStudent(students);
+        else if (c === 2) showAllStudents(students);
+        else if (c === 3) findStudentById(students);
+        else if (c === 4) console.log('Goodbye!');
+        else console.log("Invalid choice. Please enter a number between 1 and 4.");
+    }while (c!==4)
+    }
+    main();
+    
